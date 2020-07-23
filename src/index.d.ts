@@ -4,7 +4,7 @@ export type OptionsParameter = {
 	parameterStoreKey?: string;
 	responseFormatter?: ResponseFormatter;
 	errorMessage?: string | object;
-	invalidMessage?: string;
+	invalidMessage?: string | object;
 	cors?: HeadersObject | boolean;
 	logger?: Console;
 	debug: boolean;
