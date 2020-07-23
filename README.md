@@ -30,7 +30,7 @@ type OptionsParameter = {
 	invalidMessage?: string;
 	cors?: HeadersObject | boolean;
 	logger?: Console;
-	debug: boolean;
+	debug?: boolean;
 }
 ```
 #### siteKey
