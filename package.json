@@ -16,7 +16,7 @@
     "coverage": "nyc npm run test",
     "build": "tsc",
     "prepare": "npm run build",
-    "prepublish": "npm test && npm lint",
+    "prepublish": "npm test && npm run lint",
     "preversion": "npm run lint"
   },
   "keywords": [],
