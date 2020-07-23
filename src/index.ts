@@ -22,12 +22,12 @@ export const recaptchaValidate = (
     context: Context
   ): Promise<APIGatewayProxyResult> => {
     let returnResponse: APIGatewayProxyResult;
-    const errorMessage: string | object =
+    const errorMessage: string | { [key: string]: boolean | number | string } =
       options.errorMessage || "There was an error validating recaptcha";
     let responseFn = options.responseFormatter;
     if (!responseFn) {
       responseFn = (
-        message: object | string,
+        message: { [key: string]: boolean | number | string } | string,
         statusCode: number
       ): APIGatewayProxyResult => {
         const res: APIGatewayProxyResult = responseFormatter(
@@ -69,7 +69,7 @@ export const recaptchaValidate = (
 function getKeyFromParameterStore(path: string): Promise<string> {
   const ssm = new AWS.SSM({ apiVersion: "2014-11-06" });
   return new Promise<string>((resolve, reject) => {
-    let params = {
+    const params = {
       Name: path,
       WithDecryption: true,
     };
@@ -100,14 +100,13 @@ async function getSiteKeyFromOptions(
 }
 
 function getUserToken(body: string | null): string {
-  let bodyObj: {
-    "g-recaptcha-response": string;
-    [key: string]: boolean | number | string;
-  };
   if (!body) {
     throw getStatusError("Empty body, expecting body with JSON", 400);
   }
-  bodyObj = JSON.parse(body);
+  const bodyObj: {
+    "g-recaptcha-response": string;
+    [key: string]: boolean | number | string;
+  } = JSON.parse(body);
   if (!bodyObj["g-recaptcha-response"]) {
     throw getStatusError("Body does not contain g-recaptcha-response", 400);
   }
@@ -132,7 +131,7 @@ async function isValidRecaptcha(
 }
 
 export function responseFormatter(
-  message: string | object,
+  message: string | { [key: string]: boolean | number | string },
   statusCode: number
 ): APIGatewayProxyResult {
   const res: APIGatewayProxyResult = {

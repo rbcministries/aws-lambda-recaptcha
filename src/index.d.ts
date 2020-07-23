@@ -1,24 +1,31 @@
-import { APIGatewayProxyResult, Context, APIGatewayProxyEvent } from 'aws-lambda';
+import {
+  APIGatewayProxyResult,
+  Context,
+  APIGatewayProxyEvent,
+} from "aws-lambda";
 export type OptionsParameter = {
-	siteKey?: string;
-	parameterStoreKey?: string;
-	responseFormatter?: ResponseFormatter;
-	errorMessage?: string | object;
-	invalidMessage?: string | object;
-	cors?: HeadersObject | boolean;
-	logger?: Console;
-	debug: boolean;
-}
+  siteKey?: string;
+  parameterStoreKey?: string;
+  responseFormatter?: ResponseFormatter;
+  errorMessage?: string | { [key: string]: boolean | number | string };
+  invalidMessage?: string | { [key: string]: boolean | number | string };
+  cors?: HeadersObject | boolean;
+  logger?: Console;
+  debug: boolean;
+};
 
 export type HeadersObject = {
-	[header: string]: boolean | number | string;
-}
+  [header: string]: boolean | number | string;
+};
 
-export type ResponseFormatter = (data:string | object, statusCode: number) => APIGatewayProxyResult
+export type ResponseFormatter = (
+  data: string | { [key: string]: boolean | number | string },
+  statusCode: number
+) => APIGatewayProxyResult;
 
 export type RecaptchaResponse = {
-	success: boolean;
-	challenge_ts: string;
-	hostname: string;
-	"error-codes"?: []
-}
+  success: boolean;
+  challenge_ts: string;
+  hostname: string;
+  "error-codes"?: [];
+};

@@ -1,14 +1,26 @@
 {
-  "name": "aws-lambda-recaptcha",
+  "name": "@ourdailybread/aws-lambda-recaptcha",
   "version": "1.0.0",
-  "description": "",
+  "description": "Server validation of recaptcha in an aws lambda function",
+  "homepage": "https://github.com/rbcministries/aws-lambda-recaptcha",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": ["dist"],
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/rbcministries/aws-lambda-recaptcha"
+  },
   "scripts": {
+    "lint": "eslint 'src/**/*.{ts,ts}' --quiet --fix -c .eslint.json",
     "test": "mocha -r ts-node/register tests/*.spec.ts",
-    "coverage": "nyc npm run test"
+    "coverage": "nyc npm run test",
+    "build": "tsc",
+    "prepare": "npm run build",
+    "prepublish": "npm test && npm lint",
+    "preversion": "npm run lint"
   },
   "keywords": [],
-  "author": "",
+  "author": "Our Daily Bread Ministries",
   "license": "ISC",
   "devDependencies": {
     "@types/aws-lambda": "^8.10.59",
