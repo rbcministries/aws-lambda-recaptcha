@@ -11,7 +11,7 @@ export type OptionsParameter = {
   invalidMessage?: string | { [key: string]: boolean | number | string };
   cors?: HeadersObject | boolean;
   logger?: Console;
-  debug: boolean;
+  debug?: boolean;
 };
 
 export type HeadersObject = {
