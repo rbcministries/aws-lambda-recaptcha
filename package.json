@@ -16,10 +16,12 @@
     "coverage": "nyc npm run test",
     "build": "tsc",
     "prepare": "npm run build",
-    "prepublish": "npm test && npm run lint",
-    "preversion": "npm run lint"
+    "prepublishOnly": "npm test && npm run lint",
+    "preversion": "npm run lint && npm test",
+    "version" : "git add -A",
+    "postversion" : "git push && git push --tags"
   },
-  "keywords": [],
+  "keywords": ["aws","lambda","recaptcha"],
   "author": "Our Daily Bread Ministries",
   "license": "ISC",
   "devDependencies": {

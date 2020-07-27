@@ -19,6 +19,8 @@ const yourFunction = (event, context)=>{
 }
 export const yourHandle = recaptchaValidate(yourFunction, options)
 ```
+The validation function looks for `g-recaptcha-response` in the body and runs the validation against that value.
+
 ### Options parameter
 There are several options that can be set using in the `options` parameter here is the type definition
 ```typescript
