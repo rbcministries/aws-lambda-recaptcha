@@ -122,7 +122,7 @@ async function isValidRecaptcha(
   const verifyRes = await axios.request<RecaptchaResponse>({
     url: RECAPTCHA_URL,
     method: RECAPTCHA_METHOD,
-    data: {
+    params: {
       secret,
       response: userToken,
     },
