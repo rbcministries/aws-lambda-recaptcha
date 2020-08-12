@@ -1,6 +1,6 @@
 {
   "name": "@ourdailybread/aws-lambda-recaptcha",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Server validation of recaptcha in an aws lambda function",
   "homepage": "https://github.com/rbcministries/aws-lambda-recaptcha",
   "main": "dist/index.js",
