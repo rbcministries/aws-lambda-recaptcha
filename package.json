@@ -13,15 +13,14 @@
     "url": "https://github.com/rbcministries/aws-lambda-recaptcha"
   },
   "scripts": {
-    "lint": "eslint 'src/**/*.{ts,ts}' --quiet --fix -c .eslint.json",
+    "lint": "eslint 'src/**/*.ts' --quiet --fix -c .eslint.json",
     "test": "mocha -r ts-node/register tests/*.spec.ts",
     "coverage": "nyc npm run test",
     "build": "tsc",
     "prepare": "npm run build",
-    "prepublishOnly": "npm test && npm run lint",
-    "preversion": "npm run lint && npm test",
-    "version": "git add -A",
-    "postversion": "git push && git push --tags"
+    "prepublishOnly": "npm test",
+    "preversion": "npm test",
+    "postversion": "git push --tags && npm publish"
   },
   "keywords": [
     "aws",
@@ -31,7 +30,6 @@
   "author": "Our Daily Bread Ministries",
   "license": "ISC",
   "devDependencies": {
-    "@types/aws-lambda": "^8.10.59",
     "@types/chai": "^4.2.11",
     "@types/mocha": "^8.0.0",
     "@types/node": "^14.0.23",
@@ -45,7 +43,9 @@
     "eslint": "^7.5.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-prettier": "^3.1.4",
-    "mocha": "^8.0.1",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.11",
+    "mocha": "^8.1.1",
     "nyc": "^15.1.0",
     "prettier": "^2.0.5",
     "rewire": "^5.0.0",
@@ -55,6 +55,15 @@
     "typescript": "^3.9.7"
   },
   "dependencies": {
+    "@types/aws-lambda": "^8.10.59",
     "axios": "^0.19.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.ts": ["eslint --fix --max-warnings=0 -c .eslint.json"]
   }
 }

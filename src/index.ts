@@ -6,7 +6,7 @@ import {
   APIGatewayProxyEvent,
 } from "aws-lambda";
 import AWS from "aws-sdk";
-import { OptionsParameter, RecaptchaResponse } from "./index.d";
+import { OptionsParameter, RecaptchaResponse } from "./types";
 import { GetParameterResult } from "aws-sdk/clients/ssm";
 const RECAPTCHA_URL = "https://www.google.com/recaptcha/api/siteverify";
 const RECAPTCHA_METHOD = "POST";

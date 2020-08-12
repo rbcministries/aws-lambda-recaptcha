@@ -6,7 +6,7 @@ import {
   APIGatewayProxyResult,
   Context,
 } from "aws-lambda";
-import { ResponseFormatter } from "../src/index.d";
+import { ResponseFormatter } from "../src/types";
 import rewire from "rewire";
 const successResponse = { statusCode: 200, body: "Success" };
 const fakeHandler = async (
